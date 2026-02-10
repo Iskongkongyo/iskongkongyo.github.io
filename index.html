@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>流萤加速器 FireflyVPN - Android VPN 客户端</title>
+  <meta name="description" content="流萤加速器（FireflyVPN）基于 sing-box 核心，支持多协议代理、智能分流、测速自动选择、分应用代理等。" />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="流萤加速器 FireflyVPN" />
+  <meta property="og:description" content="基于 sing-box 的 Android VPN 客户端，支持多协议代理、智能分流、测速选点、分应用代理，开源可定制。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://github.com/Iskongkongyo/FireflyVPN" />
+  <meta property="og:image" content="./images/1.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="流萤加速器 FireflyVPN" />
+  <meta name="twitter:description" content="基于 sing-box 的 Android VPN 客户端，支持多协议代理、智能分流、测速选点、分应用代理，开源可定制。" />
+
+  <link rel="icon" href="./images/firefly.jpg" />
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+
+<body>
+  <!-- 顶部导航 -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top">
+        <img src="./images/firefly.jpg" alt="FireflyVPN Logo" class="brand-logo" />
+        <span class="brand-text">
+          <strong>流萤加速器</strong>
+          <small>FireflyVPN · Android</small>
+        </span>
+      </a>
+
+      <nav class="nav" id="mainNav">
+        <a href="#features">功能</a>
+        <a href="#screenshots">截图</a>
+        <a href="#download">下载</a>
+        <a href="#docs">文档</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="actions">
+        <button id="themeBtn" class="btn btn-ghost" type="button" aria-label="切换主题">
+          <span class="icon">🌓</span>
+        </button>
+
+        <!-- 汉堡菜单按钮（移动端） -->
+        <button id="menuBtn" class="btn btn-ghost hamburger" type="button" aria-label="菜单">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <!-- 右上角 GitHub 图标跳转 -->
+        <a class="btn btn-ghost icon-btn" href="https://github.com/Iskongkongyo/FireflyVPN" target="_blank"
+          rel="noreferrer" aria-label="在 GitHub 打开项目">
+          <svg class="icon-gh" viewBox="0 0 16 16" aria-hidden="true">
+            <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+              0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+              -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+              .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+              -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68
+              0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56
+              .82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07
+              -.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="badge">sing-box 核心 · 多协议 · 简单易用</p>
+          <h1>流萤加速器（FireflyVPN）</h1>
+          <p class="lead">
+            一款基于 <strong>sing-box</strong> 的 Android VPN 客户端，支持多种代理协议与智能分流，
+            提供测试选点、分应用代理、IPv6 路由、备用订阅等能力，开源可定制。
+          </p>
+
+          <div class="cta">
+            <a class="btn btn-primary" href="#download">立即下载</a>
+            <a class="btn btn-secondary" href="#features">了解功能</a>
+          </div>
+
+          <div class="meta">
+            <div class="meta-item">
+              <span class="k">最新版本</span>
+              <span class="v" id="latestVersion">加载中…</span>
+            </div>
+            <div class="meta-item">
+              <span class="k">适配系统</span>
+              <span class="v">Android 7.0+</span>
+            </div>
+            <div class="meta-item">
+              <span class="k">协议</span>
+              <span class="v">MIT License</span>
+            </div>
+          </div>
+
+          <p class="hint">
+            * 下载链接将自动指向 GitHub Releases 的 Latest 资产（若 API 受限会回退到 Releases 页面）。
+          </p>
+        </div>
+
+        <div class="hero-card">
+          <img src="./images/1.jpg" alt="FireflyVPN主页面" class="hero-shot" />
+          <div class="hero-card-footer">
+            <span>现代 UI · Material 3 / Jetpack Compose</span>
+            <a href="#screenshots">查看更多截图 →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 功能 -->
+    <section id="features" class="section">
+      <div class="container">
+        <h2>主要功能</h2>
+        <p class="sub">围绕"稳定、易用、可控"的代理体验设计。</p>
+
+        <div class="grid cards">
+          <article class="card">
+            <h3>多协议支持</h3>
+            <p>VLESS / VMess / Trojan / Hysteria2 / Shadowsocks / SOCKS4/5 / HTTP(S)。</p>
+          </article>
+
+          <article class="card">
+            <h3>智能分流</h3>
+            <p>国内流量直连、国外流量代理，自动识别常见 CN 应用与 CDN。</p>
+          </article>
+
+          <article class="card">
+            <h3>一键测试</h3>
+            <p>快速测试延迟/可用性，自动选择最优节点，减少手动折腾。</p>
+          </article>
+
+          <article class="card">
+            <h3>分应用代理</h3>
+            <p>精细控制哪些应用走代理或绕过 VPN，支持搜索过滤。</p>
+          </article>
+
+          <article class="card">
+            <h3>IPv6 支持</h3>
+            <p>可选禁用 / 启用 / 优先 / 仅 IPv6（实验性）等模式。</p>
+          </article>
+
+          <article class="card">
+            <h3>备用订阅</h3>
+            <p>主订阅不可用时快速切换备用源，带回退机制与本地缓存。</p>
+          </article>
+
+          <article class="card">
+            <h3>稳健更新</h3>
+            <p>应用内下载、断点续传、原子化更新，减少安装包损坏风险。</p>
+          </article>
+
+          <article class="card">
+            <h3>安全防护</h3>
+            <p>字符串混淆、NDK 密钥存储、AES-GCM、签名校验、Release 日志移除等。</p>
+          </article>
+        </div>
+
+        <div class="note">
+          本项目是一个开源客户端项目，节点订阅/更新/公告接口可按你的后端自定义配置。
+        </div>
+      </div>
+    </section>
+
+    <!-- 截图 -->
+    <section id="screenshots" class="section alt">
+      <div class="container">
+        <h2>界面截图</h2>
+        <p class="sub">简洁直观，设置与选点一目了然。</p>
+
+        <div class="shots">
+          <figure class="shot">
+            <img src="./images/2.jpg" alt="设置" loading="lazy" />
+          </figure>
+          <figure class="shot">
+            <img src="./images/3.jpg" alt="节点列表" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 下载 -->
+    <section id="download" class="section">
+      <div class="container">
+        <h2>下载</h2>
+        <p class="sub">
+          推荐从 GitHub Releases 下载最新 APK（Latest：<span id="latestVersion2">加载中…</span>）。
+        </p>
+
+        <div class="download-box">
+          <div>
+            <h3>Android APK</h3>
+            <p class="muted">适用于 Android 7.0+。若系统提示"未知来源"，请按提示开启安装权限。</p>
+          </div>
+
+          <div class="download-actions">
+            <a id="apkBtn" class="btn btn-primary" href="https://github.com/Iskongkongyo/FireflyVPN/releases"
+              target="_blank" rel="noreferrer">
+              前往 Releases 下载
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/Iskongkongyo/FireflyVPN" target="_blank" rel="noreferrer">
+              查看源码
+            </a>
+          </div>
+        </div>
+
+        <div class="mini-grid">
+          <div class="mini">
+            <h4>更新说明</h4>
+            <p>项目支持版本更新接口，服务端返回版本与下载地址即可触发应用内更新流程。</p>
+          </div>
+          <div class="mini">
+            <h4>公告与备用订阅</h4>
+            <p>可通过公告接口下发公告内容与备用订阅 URL，客户端会展示"备用节点"提示。</p>
+          </div>
+          <div class="mini">
+            <h4>开源协议</h4>
+            <p>本项目 MIT License；依赖 sing-box（GPLv3）。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 文档 -->
+    <section id="docs" class="section alt">
+      <div class="container">
+        <h2>开发与自定义</h2>
+        <p class="sub">想自己动手进行DIY？来这里就是啦！</p>
+
+        <div class="grid docs">
+          <article class="card">
+            <h3>快速开始</h3>
+            <ol>
+              <li>放置 <code>libbox.aar</code> 到 <code>app/libs/</code>。</li>
+              <li>修改 <code>AppConfig.kt</code>：订阅 / 更新 / 公告 / 官网 / 反馈邮箱。</li>
+              <li>构建：<code>./gradlew assembleDebug</code>。</li>
+            </ol>
+          </article>
+
+          <article class="card">
+            <h3>API 接口概览</h3>
+            <ul>
+              <li><code>GET /api/nodes</code>：节点订阅（支持Base64编码，每行一个节点信息）。</li>
+              <li><code>GET /api/update</code>：版本更新。</li>
+              <li><code>GET /api/notice</code>：公告与备用订阅配置。</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>构建发布要点</h3>
+            <ul>
+              <li>使用 Release 签名（避免 Native 签名校验失败）。</li>
+              <li>支持 Android 15+ 的 16KB 页面大小对齐配置。</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="cta-row">
+          <a class="btn btn-secondary"
+            href="https://github.com/Iskongkongyo/FireflyVPN#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B" target="_blank"
+            rel="noreferrer">打开 README 文档</a>
+          <a class="btn btn-ghost" href="https://github.com/Iskongkongyo/FireflyVPN/issues" target="_blank"
+            rel="noreferrer">问题反馈</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container">
+        <h2>常见问题</h2>
+
+        <div class="faq">
+          <details>
+            <summary>编写rule_set相关功能代码时运行报错 "unknown field rule_set" 怎么办？</summary>
+            <p>当前项目自带的 libbox.aar 在编译时不支持 <code>rule_set</code>，项目用硬编码 <code>domain_suffix</code> 规则代替，如有需求建议自行编译最新版的
+              libbox.aar。</p>
+          </details>
+
+          <details>
+            <summary>节点无法连接 / NAME_NOT_RESOLVED？</summary>
+            <p>可能是节点本身的问题，还有就是域名类节点需要本地 DNS 解析；建议更新到最新版本并检查 DNS/网络环境。</p>
+          </details>
+
+          <details>
+            <summary>我想要自己进行DIY，却不知如何开始？</summary>
+            <p>修改 <code>AppConfig.kt</code>：订阅/更新/公告/官网与反馈邮箱；应用名/图标/包名/主题色也都在 <a class="btn btn-secondary"
+                href="https://github.com/Iskongkongyo/FireflyVPN#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B" target="_blank"
+                rel="noreferrer">README文档</a> 里都有说明。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- footer 移到 main 外部 -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>流萤加速器 FireflyVPN</strong>
+        <p class="muted">基于 sing-box 的 Android VPN 客户端 · 开源可定制</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/Iskongkongyo/FireflyVPN" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://github.com/Iskongkongyo/FireflyVPN/releases" target="_blank" rel="noreferrer">Releases</a>
+        <a href="#top">回到顶部 ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/app.js"></script>
+</body>
+
+</html>
