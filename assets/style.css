@@ -325,6 +325,10 @@ h2 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.disclaimer-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .card {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -444,6 +448,91 @@ h2 {
   flex-wrap: wrap;
 }
 
+/* 更新日志 */
+.changelog-box {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(127, 127, 127, .06);
+  overflow: hidden;
+}
+
+.changelog-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(127, 127, 127, .05);
+}
+
+.changelog-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+  background: linear-gradient(135deg, rgba(106, 166, 255, .9), rgba(139, 92, 246, .8));
+  color: #061022;
+}
+
+.changelog-date {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.changelog-body {
+  padding: 16px;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 14.5px;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.changelog-body h1,
+.changelog-body h2,
+.changelog-body h3 {
+  color: var(--text);
+  margin: 16px 0 8px;
+  font-size: 16px;
+}
+
+.changelog-body h1:first-child,
+.changelog-body h2:first-child,
+.changelog-body h3:first-child {
+  margin-top: 0;
+}
+
+.changelog-body ul,
+.changelog-body ol {
+  padding-left: 20px;
+  margin: 6px 0;
+}
+
+.changelog-body li {
+  margin-bottom: 4px;
+}
+
+.changelog-body code {
+  background: rgba(127, 127, 127, .18);
+  padding: .12em .35em;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.changelog-body p {
+  margin: 8px 0;
+}
+
+.changelog-body a {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+.changelog-body strong {
+  color: var(--text);
+}
+
 .faq details {
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -513,6 +602,10 @@ h2 {
   }
 
   .docs {
+    grid-template-columns: 1fr;
+  }
+
+  .disclaimer-grid {
     grid-template-columns: 1fr;
   }
 

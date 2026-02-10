@@ -14,6 +14,96 @@ function setHref(id, href) {
   if (el) el.href = href;
 }
 
+/**
+ * Lightweight markdown -> HTML converter
+ * Supports: headings, bold, italic, inline code, links, lists, paragraphs
+ */
+function markdownToHtml(md) {
+  if (!md) return '<p class="muted">暂无更新说明。</p>';
+
+  const lines = md.split("\n");
+  let html = "";
+  let inList = false;
+  let listType = "";
+
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i];
+
+    // Heading
+    const headingMatch = line.match(/^(#{1,3})\s+(.+)/);
+    if (headingMatch) {
+      if (inList) { html += `</${listType}>`; inList = false; }
+      const level = headingMatch[1].length;
+      html += `<h${level}>${inlineFormat(headingMatch[2])}</h${level}>`;
+      continue;
+    }
+
+    // Unordered list item
+    const ulMatch = line.match(/^\s*[-*]\s+(.+)/);
+    if (ulMatch) {
+      if (!inList || listType !== "ul") {
+        if (inList) html += `</${listType}>`;
+        html += "<ul>";
+        inList = true;
+        listType = "ul";
+      }
+      html += `<li>${inlineFormat(ulMatch[1])}</li>`;
+      continue;
+    }
+
+    // Ordered list item
+    const olMatch = line.match(/^\s*\d+\.\s+(.+)/);
+    if (olMatch) {
+      if (!inList || listType !== "ol") {
+        if (inList) html += `</${listType}>`;
+        html += "<ol>";
+        inList = true;
+        listType = "ol";
+      }
+      html += `<li>${inlineFormat(olMatch[1])}</li>`;
+      continue;
+    }
+
+    // Close list if we hit a non-list line
+    if (inList) { html += `</${listType}>`; inList = false; }
+
+    // Empty line
+    if (line.trim() === "") continue;
+
+    // Paragraph
+    html += `<p>${inlineFormat(line)}</p>`;
+  }
+
+  if (inList) html += `</${listType}>`;
+  return html;
+}
+
+/** Format inline markdown: bold, italic, code, links */
+function inlineFormat(text) {
+  return text
+    // Escape HTML
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    // Links: [text](url)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>')
+    // Bold: **text** or __text__
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/__(.+?)__/g, "<strong>$1</strong>")
+    // Italic: *text* or _text_
+    .replace(/\*(.+?)\*/g, "<em>$1</em>")
+    .replace(/_(.+?)_/g, "<em>$1</em>")
+    // Inline code: `code`
+    .replace(/`([^`]+)`/g, "<code>$1</code>");
+}
+
+/** Format ISO date to readable string */
+function formatDate(isoStr) {
+  if (!isoStr) return "";
+  const d = new Date(isoStr);
+  return d.toLocaleDateString("zh-CN", { year: "numeric", month: "long", day: "numeric" });
+}
+
 async function loadLatestRelease() {
   // 默认回退
   setHref("apkBtn", fallbackReleaseUrl);
@@ -44,7 +134,7 @@ async function loadLatestRelease() {
       // 写入缓存
       try {
         sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), payload: data }));
-      } catch (_) { /* sessionStorage 不可用时忽略 */ }
+      } catch (_) { /* ignore */ }
     }
 
     const tag = data.tag_name || "Latest";
@@ -63,10 +153,27 @@ async function loadLatestRelease() {
       setHref("apkBtn", data.html_url || fallbackReleaseUrl);
       setText("apkBtn", `前往 Releases（${tag}）`);
     }
+
+    // Changelog
+    renderChangelog(data);
+
   } catch (e) {
     // API 受限/网络异常：保持回退链接即可
     console.warn(e);
+    const body = document.getElementById("changelogBody");
+    if (body) body.innerHTML = '<p class="muted">无法加载更新日志，请访问 <a href="' + fallbackReleaseUrl + '" target="_blank">GitHub Releases</a> 查看。</p>';
+    setText("changelogTag", "—");
   }
+}
+
+function renderChangelog(data) {
+  const tagEl = document.getElementById("changelogTag");
+  const dateEl = document.getElementById("changelogDate");
+  const bodyEl = document.getElementById("changelogBody");
+
+  if (tagEl) tagEl.textContent = data.tag_name || "Latest";
+  if (dateEl) dateEl.textContent = formatDate(data.published_at);
+  if (bodyEl) bodyEl.innerHTML = markdownToHtml(data.body);
 }
 
 function initTheme() {
