@@ -22,6 +22,19 @@
 
   <link rel="icon" href="./images/firefly.jpg" />
   <link rel="stylesheet" href="./assets/style.css" />
+
+  <!-- 在页面渲染前确定主题，避免闪烁 -->
+  <script>
+    (function () {
+      var s = localStorage.getItem("ff_theme");
+      if (s === "light" || s === "dark") {
+        document.documentElement.dataset.theme = s;
+      } else {
+        document.documentElement.dataset.theme =
+          window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+    })();
+  </script>
 </head>
 
 <body>
