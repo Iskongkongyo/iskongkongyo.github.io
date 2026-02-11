@@ -147,12 +147,15 @@ async function loadLatestRelease() {
 
     if (apk && apk.browser_download_url) {
       setHref("apkBtn", apk.browser_download_url);
-      setText("apkBtn", `下载 APK（${tag}）`);
+      setText("apkBtn", `GitHub 下载（${tag}）`);
     } else {
       // 没有 apk 资产就指向 release 页面
       setHref("apkBtn", data.html_url || fallbackReleaseUrl);
       setText("apkBtn", `前往 Releases（${tag}）`);
     }
+
+    // R2 高速下载也显示版本号
+    setText("apkBtnR2", `⚡ 高速下载（${tag}）`);
 
     // Changelog
     renderChangelog(data);
