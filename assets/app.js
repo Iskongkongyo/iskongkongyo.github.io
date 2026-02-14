@@ -107,8 +107,8 @@ function formatDate(isoStr) {
 async function loadLatestRelease() {
   // 默认回退
   setHref("apkBtn", fallbackReleaseUrl);
-  setText("latestVersion", "Releases");
-  setText("latestVersion2", "Releases");
+  setText("latestVersion", "请求失败");
+  setText("latestVersion2", "请求失败");
 
   try {
     // 尝试从缓存读取
@@ -217,6 +217,24 @@ function initMobileMenu() {
   });
 }
 
+function initBackToTop() {
+  const btn = document.getElementById("backToTop");
+  if (!btn) return;
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      btn.classList.add("show");
+    } else {
+      btn.classList.remove("show");
+    }
+  });
+
+  btn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
 initTheme();
 initMobileMenu();
+initBackToTop();
 loadLatestRelease();
