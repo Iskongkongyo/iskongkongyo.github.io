@@ -169,6 +169,26 @@
           </article>
 
           <article class="card">
+            <h3>网速测试</h3>
+            <p>集成 Cloudflare Speed Test，支持下载/上传测速，实时显示速率。</p>
+          </article>
+
+          <article class="card">
+            <h3>网络工具箱</h3>
+            <p>内置常用网络检测工具（出口检测、IP查询、WebRTC/DNS泄漏等），一键跳转浏览器使用。</p>
+          </article>
+
+          <article class="card">
+            <h3>流媒体解锁测试</h3>
+            <p>集成 UnlockTests，可逐节点测试国外主流网站解锁情况并展示可滚动结果明细。</p>
+          </article>
+
+          <article class="card">
+            <h3>自动化测试流程</h3>
+            <p>支持配置后自动执行“拉节点 → URL Test → 延迟筛选 → 带宽测试 → 带宽筛选 → 解锁测试”。</p>
+          </article>
+
+          <article class="card">
             <h3>备用订阅</h3>
             <p>主订阅不可用时快速切换备用源，带回退机制与本地缓存。</p>
           </article>
@@ -198,10 +218,13 @@
 
         <div class="shots">
           <figure class="shot">
-            <img src="./images/2.jpg" alt="设置" loading="lazy" />
+            <img src="./images/2.jpg" alt="主界面" loading="lazy" />
           </figure>
           <figure class="shot">
             <img src="./images/3.jpg" alt="节点列表" loading="lazy" />
+          </figure>
+          <figure class="shot">
+            <img src="./images/4.jpg" alt="设置" loading="lazy" />
           </figure>
         </div>
       </div>
@@ -329,14 +352,37 @@
 
         <div class="faq">
           <details>
-            <summary>编写rule_set相关功能代码时运行报错 "unknown field rule_set" 怎么办？</summary>
-            <p>当前项目自带的 libbox.aar 在编译时不支持 <code>rule_set</code>，项目用硬编码 <code>domain_suffix</code> 规则代替，如有需求建议自行编译最新版的
-              libbox.aar。</p>
+            <summary>URL Test 全部显示超时？</summary>
+            <p>1. 确认 <code>network_security_config.xml</code> 中包含
+              <code><domain includeSubdomains="true">127.0.0.1</domain></code> 的明文放行配置。
+            </p>
+            <p>2. URL Test 需要网络连接，确保 WiFi 或移动数据正常。</p>
+            <p>3. 检查 Logcat 中 <code>SingBoxCoreLog</code> 标签的日志，排查 sing-box 核心错误。</p>
           </details>
 
           <details>
-            <summary>节点无法连接 / NAME_NOT_RESOLVED？</summary>
-            <p>可能是节点本身的问题，还有就是域名类节点需要本地 DNS 解析；建议更新到最新版本并检查 DNS/网络环境。</p>
+            <summary>为什么开启自动化测试后，启动时没有先跑默认 URL Test？</summary>
+            <p>这是预期行为。启用自动化测试后，启动会直接进入“自动化流程”（其中包含 URL Test 阶段），避免重复测试。</p>
+          </details>
+
+          <details>
+            <summary>流媒体解锁测试使用什么组件？</summary>
+            <p>使用 <a href="https://github.com/oneclickvirt/UnlockTests"><code>oneclickvirt/UnlockTests</code></a>
+              编译的Android 二进制，通过本地SOCKS 代理逐节点测试。</p>
+          </details>
+
+          <details>
+            <summary>如何添加新的代理协议？</summary>
+            <p>1. 在 <code>NodeType.kt</code>添加新枚举值。</p>
+            <p>2. 在 <code>SubscriptionParser.kt</code> 添加解析逻辑。</p>
+            <p>3. 在 <code>SingBoxConfigGenerator.kt</code> 添加 outbound 生成逻辑。</p>
+          </details>
+
+          <details>
+            <summary>如何添加新的网络工具？</summary>
+            <p>编辑<code>AppConfig.kt</code> 中的 <code>NETWORK_TOOLS_JSON</code>，按格式添加新条目。如需自定义图标，同时修改
+              <code>NetworkToolboxDialog.kt</code> 中的 <code>getToolIcon() </code>函数。
+            </p>
           </details>
 
           <details>
@@ -403,7 +449,9 @@
         <p class="disclaimer-text">
           免责声明：本项目为个人开源作品，与米哈游 (HoYoverse) 无关。本项目不盈利、不接受捐赠。<br>
           所有涉及的游戏角色名称及设计版权归米哈游所有。<br>
-          <small>Disclaimers: This project is my open-source creation and is NOT related to miHoYo (HoYoverse). This project is non-profit and not for sale. All game character names and design copyrights belong to miHoYo.</small>
+          <small>Disclaimers: This project is my open-source creation and is NOT related to miHoYo (HoYoverse). This
+            project is non-profit and not for sale. All game character names and design copyrights belong to
+            miHoYo.</small>
         </p>
       </div>
       <div class="footer-links">
@@ -415,8 +463,9 @@
   </footer>
 
   <button id="backToTop" class="back-to-top" aria-label="回到顶部">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M18 15l-6-6-6 6"/>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6" />
     </svg>
   </button>
 
