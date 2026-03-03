@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>流萤加速器 FireflyVPN - Android VPN 客户端</title>
-  <meta name="description" content="流萤加速器（FireflyVPN）基于 sing-box 核心，支持多协议代理、智能分流、测速自动选择、分应用代理等。" />
+  <meta name="description" content="流萤加速器（FireflyVPN）基于 sing-box 核心，支持多协议代理、智能分流、测试择优、分应用代理、IPv6 路由、绕过局域网等。" />
   <meta name="theme-color" content="#0b1220" />
 
   <!-- Open Graph -->
@@ -94,11 +94,11 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <p class="badge">sing-box 核心 · 多协议 · 简单易用</p>
+          <p class="badge">sing-box 核心 · 多协议 · 智能分流</p>
           <h1>流萤加速器（FireflyVPN）</h1>
           <p class="lead">
             一款基于 <strong>sing-box</strong> 的 Android VPN 客户端，支持多种代理协议与智能分流，
-            提供测试选点、分应用代理、IPv6 路由、备用订阅等能力，开源可定制。
+            提供测试择优、分应用代理、绕过局域网、IPv6 路由、备用订阅等能力，开源可定制。
           </p>
 
           <div class="cta">
@@ -145,7 +145,8 @@
         <div class="grid cards">
           <article class="card">
             <h3>多协议支持</h3>
-            <p>VLESS / VMess / Trojan / Hysteria2 / AnyTLS / TUIC / Naive / WireGuard Shadowsocks / SOCKS4/5 / HTTP(S)。</p>
+            <p>VLESS / VMess / Trojan / Hysteria2 / AnyTLS / TUIC / Naive / WireGuard Shadowsocks / SOCKS4/5 / HTTP(S)。
+            </p>
           </article>
 
           <article class="card">
@@ -201,6 +202,26 @@
           <article class="card">
             <h3>安全防护</h3>
             <p>字符串混淆、NDK 密钥存储、AES-GCM、签名校验、Release 日志移除、数据库加密等。</p>
+          </article>
+
+          <article class="card">
+            <h3>绕过局域网</h3>
+            <p>一键开关，局域网流量直连不受 VPN 影响，确保内网设备访问正常。</p>
+          </article>
+
+          <article class="card">
+            <h3>测试择优面板</h3>
+            <p>全屏横屏沉浸式测试入口，内置聊天/下载模式，支持延迟/下行/解锁优先等智能择优规则。</p>
+          </article>
+
+          <article class="card">
+            <h3>节点 IP 信息</h3>
+            <p>查询当前选择节点的出口 IP 详情（地区、ASN、风控评分、是否住宅/原生 IP），无需先连接 VPN。</p>
+          </article>
+
+          <article class="card">
+            <h3>VPN 通知</h3>
+            <p>连接后实时显示上传/下载速度、累计流量，支持通知栏直接断开/重置连接。</p>
           </article>
         </div>
 
@@ -391,6 +412,11 @@
                 href="https://github.com/Iskongkongyo/FireflyVPN#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B" target="_blank"
                 rel="noreferrer">README文档</a> 里都有说明。</p>
           </details>
+
+          <details>
+            <summary>为什么在“测试择优面板”点击“自动连接最优”后没有立即选中节点？</summary>
+            <p>这是保护逻辑。如果当前模式还没有完成对应类型的测试（例如你选了“下行优先”，但还没跑下行测速），系统会先保存规则并提示你执行测试，而不会拿无关结果来误选节点。</p>
+          </details>
         </div>
       </div>
     </section>
@@ -449,7 +475,7 @@
         <p class="disclaimer-text">
           免责声明：本项目为个人开源作品，与米哈游 (HoYoverse) 无关。本项目不盈利、不接受捐赠。<br>
           所有涉及的游戏角色名称及设计版权归米哈游所有。<br>
-          <small>Disclaimers: This project is my open-source creation and is NOT related to miHoYo (HoYoverse). This
+          <small>Disclaimers: This project is my open-source creation and is not related to miHoYo (HoYoverse). This
             project is non-profit and not for sale. All game character names and design copyrights belong to
             miHoYo.</small>
         </p>
